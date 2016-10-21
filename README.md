@@ -1,1 +1,1 @@
-# EsericizioGIT
+Implementation of the classic game Space Invaders using HTML 5 and Javascript
