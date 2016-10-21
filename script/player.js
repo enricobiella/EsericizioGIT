@@ -24,7 +24,7 @@ function Player() {
 	//create the player sprite
 	var sprite = new Sprite(20);
 	//set sprite image and size
-	sprite.initImage('script/images/ship.png', 26, 16);
+	sprite.initImage(imgSrc, 26, 16);
 	//set initial position of the sprite
 	sprite.initPosition(WINDOW_WIDTH / 2, WINDOW_HEIGHT - 100);
 

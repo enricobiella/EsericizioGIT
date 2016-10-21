@@ -151,7 +151,7 @@ var enemies = new Array();
 createEnemies(6, 6);
 
 //handle events when the a key is pressed
-document.onkeypress = function(e) {
+document.onkeydown = function(e) {
 	keyHandler.keyPress(e);	
 }
 

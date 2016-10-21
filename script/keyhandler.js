@@ -10,12 +10,13 @@
 function KeyHandler() {
 	//define the Z key
  	this.Z_KEY = 122;
- 	this.z_KEY = 90;
+ 	this.z_KEY = 37;
  	//define the X key
  	this.X_KEY = 120;
- 	this.x_KEY = 88;
+	this.x_KEY = 39;
  	//define the space key
  	this.SPACE_KEY = 32;
+	//define arrow key
 
  	/**
  	 * Handle the events when a key is pressed
