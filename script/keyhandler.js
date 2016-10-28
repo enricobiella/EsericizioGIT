@@ -35,13 +35,10 @@ function KeyHandler() {
  			case this.x_KEY:
  				player.movingRight = true;
  				break;
- 			case this.SPACE_KEY:
- 				lasers[lasers.length] = new Laser(player);
- 				break;
  		}
  	}
 
- 	/**
+	/**
  	 * Handle events when key is released
  	 * @param e - event
  	 */
@@ -57,6 +54,9 @@ function KeyHandler() {
  			case this.x_KEY:
  				player.movingRight = false;
  				break;
+			case this.SPACE_KEY:
+				lasers[lasers.length] = new Laser(player);
+				break;
  		}
  	}
 }

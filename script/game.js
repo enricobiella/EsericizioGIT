@@ -106,7 +106,7 @@ var runGame = function() {
 	player.draw();
 	//animate all the elements
 	animate();
-	//check colisions
+	//check collisions
 	detectColisions();
 	//set timeout function
 	gameLoop = setTimeout(runGame, intervalTime);
