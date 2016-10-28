@@ -2,7 +2,7 @@
  * File colisionhadler.js
  * implemented by Adelino Lobão
  * 20/01/2012
- * modified by Niccolò Perego, Leonardo Riva, Tomas Abbondi, Riccardo Merlo, Enrico Biella
+ * modified by Niccolò Perego, Leonardo Riva, Tomas Abbondi, Riccardo Merlo, Enrico Biella, Davide Atzeni.
  * 23/10/2016
  */
 
@@ -16,6 +16,8 @@
  	 * @param obj1 - first object
  	 * @param obj2 - second object
  	 */
+
+
  	this.detectColisionBetweenObjects = function(obj1, obj2) {
  		if((obj1.getPositionY() + obj1.height) < obj2.getPositionY()) {
  			return false;

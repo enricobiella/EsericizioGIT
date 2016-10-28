@@ -2,20 +2,27 @@
  * File game.js
  * implemented by Adelino Lobão
  * 20/01/2012
- * modified by Niccolò Perego, Leonardo Riva, Tomas Abbondi, Riccardo Merlo, Enrico Biella
+ * modified by Niccolò Perego, Leonardo Riva, Tomas Abbondi, Riccardo Merlo, Enrico Biella, Davide Atzeni.
  * 23/10/2016
  */
 
 /**
  * Draw the window game
  */
-var drawWindow = function() {
- 	context.fillStyle = '#000';
-	context.clearRect(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT);
-	context.beginPath();
-	context.rect(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT);
-	context.closePath();
-	context.fill();
+/**
+ * File colision.js
+ * implemented by Adelino Lobão
+ * 20/01/2012
+ * modified by Niccolò Perego, Leonardo Riva, Tomas Abbondi, Riccardo Merlo, Enrico Biella
+ * 23/10/2016
+ */
+var drawWindow = function () {
+    context.fillStyle = '#000';
+    context.clearRect(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT);
+    context.beginPath();
+    context.rect(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT);
+    context.closePath();
+    context.fill();
 }
 
 /**
@@ -23,95 +30,101 @@ var drawWindow = function() {
  * @param numRows - indicate the number of rows
  * @param numCols - indicate the number of columns
  */
-var createEnemies = function(numRows, numCols) {
-	//reference position xx
-	var refPosX = (WINDOW_WIDTH / 2); 
-	//reference position yy
-	var refPosY = (WINDOW_HEIGHT / 10);
-	//add enemies horde
-	for(var x = 0;  x < numRows; ++x) {
-		for(var y = 0; y < numCols; ++y) {
-			//position xx
-			var posX = refPosX + (40 * x);
-			//position yy
-			var posY = refPosY + (40 * y);
-			//add an enemy to the array
-			enemies[enemies.length] = new Enemy(posX, posY);
-		}
-	}
+var createEnemies = function (numRows, numCols) {
+    //reference position xx
+    var refPosX = (WINDOW_WIDTH / 2);
+    //reference position yy
+    var refPosY = (WINDOW_HEIGHT / 10);
+    //add enemies horde
+    for (var x = 0; x < numRows; ++x) {
+        for (var y = 0; y < numCols; ++y) {
+            //position xx
+            var posX = refPosX + (40 * x);
+            //position yy
+            var posY = refPosY + (40 * y);
+            //add an enemy to the array
+            enemies[enemies.length] = new Enemy(posX, posY);
+        }
+    }
 }
 
 /**
  * Animate elements
  */
-var animate = function() {
-	var currentAction = '';
+var animate = function () {
+    var currentAction = '';
 
-	if(player.movingLeft)	player.moveLeft();
-	else if(player.movingRight)	player.moveRight();
+    if (player.movingLeft)    player.moveLeft();
+    else if (player.movingRight)    player.moveRight();
 
-	//iterate through all the lasers
-	for(index in lasers) {
-		//draw laser
-		lasers[index].draw();
-		//simulate one step
-		if(lasers[index].step()){
-			lasers.splice(index, 1);
-		}
-	}
+    //iterate through all the lasers
+    for (index in lasers) {
+        //draw laser
+        lasers[index].draw();
+        //simulate one step
+        if (lasers[index].step()) {
+            lasers.splice(index, 1);
+        }
+    }
 
-	//check the movement of the enemies
-	for(index in enemies) {
-		currentAction = enemies[index].checkStep();
-		if(currentAction != previousAction){
-			break;
-		}
-	}
+    //check the movement of the enemies
+    for (index in enemies) {
+        currentAction = enemies[index].checkStep();
+        if (currentAction != previousAction) {
+            break;
+        }
+    }
 
-	//iterate through all the enemies
-	for(index in enemies) {
-		//draw enemy
-		enemies[index].draw();
-		//jump enemy
-		if(currentAction != previousAction){
-			enemies[index].jump();
-		}else{
-			//simulate step
-			enemies[index].step();		
-		}
-	}
-	previousAction = currentAction;
+    //iterate through all the enemies
+    for (index in enemies) {
+        //draw enemy
+        enemies[index].draw();
+        //jump enemy
+        if (currentAction != previousAction) {
+            enemies[index].jump();
+        } else {
+            //simulate step
+            enemies[index].step();
+        }
+    }
+    previousAction = currentAction;
 }
 
 /**
  * Detect colisions between the lasers and enemies
  */
-var detectColisions = function() {
-	for(indexLaser in lasers) {
-		for(indexEnemy in enemies) {
-			if(colisionHandler.detectColisionBetweenObjects(lasers[indexLaser], enemies[indexEnemy])) {
-				lasers.splice(indexLaser, 1);
-				enemies.splice(indexEnemy, 1);
-				break;
-			}
-		}
-	}
+var detectColisions = function () {
+    var score;
+    for (indexLaser in lasers) {
+        for (indexEnemy in enemies) {
+            if (colisionHandler.detectColisionBetweenObjects(lasers[indexLaser], enemies[indexEnemy])) {
+                lasers.splice(indexLaser, 1);
+                enemies.splice(indexEnemy, 1);
+                player.incrementScore();
+                score = player.getScore();
+                span = document.getElementById("textelement");
+                txt = document.createTextNode("SCORE = " + score);
+                span.innerText = txt.textContent;
+                break;
+            }
+        }
+    }
 }
 
 /**
  * Run the game
  */
-var runGame = function() {
- 	//draw the window game
- 	drawWindow();
- 	//draw the player
-	player.draw();
-	//animate all the elements
-	animate();
-	//check collisions
-	detectColisions();
-	//set timeout function
-	gameLoop = setTimeout(runGame, intervalTime);
+var runGame = function () {
+    //draw the window game
+    drawWindow();
+    //draw the player
+    player.draw();
+    //animate all the elements
+    animate();
+    //check collisions
+    detectColisions();
+    //set timeout function
+    gameLoop = setTimeout(runGame, intervalTime);
 }
 
 //window width
@@ -153,13 +166,13 @@ var enemies = new Array();
 createEnemies(6, 6);
 
 //handle events when the a key is pressed
-document.onkeydown = function(e) {
-	keyHandler.keyPress(e);	
+document.onkeydown = function (e) {
+    keyHandler.keyPress(e);
 }
 
 //handle events when the key is released
-document.onkeyup = function(e) {
-	keyHandler.keyUp(e);
+document.onkeyup = function (e) {
+    keyHandler.keyUp(e);
 }
 
 //run the game
