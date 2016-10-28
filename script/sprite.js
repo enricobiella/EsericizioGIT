@@ -1,7 +1,9 @@
 /**
  * File sprite.js
  * implemented by Adelino Lobão
- * 14/01/2012
+ * 20/01/2012
+ * modified by Niccolò Perego, Leonardo Riva, Tomas Abbondi, Riccardo Merlo, Enrico Biella
+ * 23/10/2016
  */
 
  /**
