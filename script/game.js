@@ -90,6 +90,8 @@ var detectColisions = function() {
 			if(colisionHandler.detectColisionBetweenObjects(lasers[indexLaser], enemies[indexEnemy])) {
 				lasers.splice(indexLaser, 1);
 				enemies.splice(indexEnemy, 1);
+				var audio = new Audio('script/sound.mp3');
+				audio.play();
 				break;
 			}
 		}
