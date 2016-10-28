@@ -145,7 +145,7 @@ var keyHandler = new KeyHandler();
 var colisionHandler = new ColisionHandler();
 //player object
 var player = new Player();
-//array that store the player lasers
+//array that store the lasers
 var lasers = new Array();
 //array that store the enemies
 var enemies = new Array();
