@@ -18,7 +18,7 @@ function Laser(player) {
 	//intial position xx
 	this.x = player.getPositionX() - 2;
 	//initial position yy
-	this.y = player.getPositionY() - 15;
+	this.y = player.getPositionY() - 150;
 
 	/**
 	 * Draw the laser
@@ -35,7 +35,7 @@ function Laser(player) {
 	 * already reach the top of the screen
 	 */
 	this.step = function() {
-		this.y = this.y - INCREMENT;
+		this.y = this.y + INCREMENT;
 		if(this.y <= 0)	return true;
 		return false;
 	}

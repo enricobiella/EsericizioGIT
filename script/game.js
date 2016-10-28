@@ -58,6 +58,7 @@ var animate = function() {
 		}
 	}
 
+
 	//check the movement of the enemies
 	for(index in enemies) {
 		currentAction = enemies[index].checkStep();
@@ -144,7 +145,7 @@ var keyHandler = new KeyHandler();
 var colisionHandler = new ColisionHandler();
 //player object
 var player = new Player();
-//array that store the lasers
+//array that store the player lasers
 var lasers = new Array();
 //array that store the enemies
 var enemies = new Array();
