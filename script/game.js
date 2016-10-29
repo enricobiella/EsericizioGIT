@@ -67,13 +67,14 @@ var animate = function () {
         }
     }
 
-    //check the movement of the enemies
-    for (index in enemies) {
-        currentAction = enemies[index].checkStep();
-        if (currentAction != previousAction) {
-            break;
-        }
-    }
+
+	//check the movement of the enemies
+	for(index in enemies) {
+		currentAction = enemies[index].checkStep();
+		if(currentAction != previousAction){
+			break;
+		}
+	}
 
     //iterate through all the enemies
     for (index in enemies) {
@@ -93,23 +94,23 @@ var animate = function () {
 /**
  * Detect colisions between the lasers and enemies
  */
-var detectColisions = function () {
-    var score;
-    for (indexLaser in lasers) {
-        for (indexEnemy in enemies) {
-            if (colisionHandler.detectColisionBetweenObjects(lasers[indexLaser], enemies[indexEnemy])) {
-                lasers.splice(indexLaser, 1);
-                enemies.splice(indexEnemy, 1);
+var detectColisions = function() {
+	for(indexLaser in lasers) {
+		for(indexEnemy in enemies) {
+			if(colisionHandler.detectColisionBetweenObjects(lasers[indexLaser], enemies[indexEnemy])) {
+				lasers.splice(indexLaser, 1);
+				enemies.splice(indexEnemy, 1);
                 player.incrementScore();
                 score = player.getScore();
                 span = document.getElementById("textelement");
                 txt = document.createTextNode("SCORE = " + score);
                 span.innerText = txt.textContent;
-                break;
-            }
-        }
-    }
-}
+                var audio = new Audio('script/sound.mp3');
+                audio.play();
+				break;
+			}
+		}
+	}
 
 /**
  * Run the game
@@ -157,7 +158,7 @@ var keyHandler = new KeyHandler();
 var colisionHandler = new ColisionHandler();
 //player object
 var player = new Player();
-//array that store the lasers
+//array that store the player lasers
 var lasers = new Array();
 //array that store the enemies
 var enemies = new Array();
@@ -166,13 +167,13 @@ var enemies = new Array();
 createEnemies(6, 6);
 
 //handle events when the a key is pressed
-document.onkeydown = function (e) {
-    keyHandler.keyPress(e);
+document.onkeydown = function(e) {
+	keyHandler.keyPress(e);	
 }
 
 //handle events when the key is released
-document.onkeyup = function (e) {
-    keyHandler.keyUp(e);
+document.onkeyup = function(e) {
+	keyHandler.keyUp(e);
 }
 
 //run the game

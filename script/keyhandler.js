@@ -58,6 +58,7 @@ function KeyHandler() {
  				break;
 			case this.SPACE_KEY:
 				lasers[lasers.length] = new Laser(player);
+				lasers2[lasers2.length] = new Laser(enemy);
 				break;
  		}
  	}
