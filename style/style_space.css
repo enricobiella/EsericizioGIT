@@ -1,3 +1,7 @@
+/* Modified by Niccolò Perego, Leonardo Riva, Riccardo Merlo, Tomas Abbondi, Enrico Biella, Davide Atzeni.
+23/1'/16
+*/
+
 body {
 	margin: 0px;
 	padding: 0px;
@@ -26,6 +30,7 @@ canvas {
 #info a:hover {
 	text-decoration: underline;
 }
+
 
 .clear {
 	clear: both;

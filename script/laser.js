@@ -1,7 +1,9 @@
 /**
  * File laser.js
  * implemented by Adelino Lobão
- * 10/01/2012
+ * 20/01/2012
+ * modified by Niccolò Perego, Leonardo Riva, Tomas Abbondi, Riccardo Merlo, Enrico Biella, Davide Atzeni.
+ * 23/10/2016
  */
 
 /**
