@@ -105,11 +105,11 @@ var detectColisions = function() {
 
                 if (player.getScore() != TOTAL_SCORE) {
                     setText("SCORE = " + score);
-                    playSound('script/kill_sound.mp3');
+                    playSound('script/sounds/kill_sound.mp3');
 
                 } else {
                     setText("GAME OVER!");
-                    playSound('script/finish_sound.mp3');
+                    playSound('script/sounds/finish_sound.mp3');
                 }
 
 				break;
