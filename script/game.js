@@ -102,15 +102,39 @@ var detectColisions = function() {
 				enemies.splice(indexEnemy, 1);
                 player.incrementScore();
                 score = player.getScore();
-                span = document.getElementById("textelement");
-                txt = document.createTextNode("SCORE = " + score);
-                span.innerText = txt.textContent;
-                var audio = new Audio('script/sound.mp3');
-                audio.play();
+
+                if (player.getScore() != TOTAL_SCORE) {
+                    setText("SCORE = " + score);
+                    playSound('script/kill_sound.mp3');
+
+                } else {
+                    setText("GAME OVER!");
+                    playSound('script/finish_sound.mp3');
+                }
+
 				break;
 			}
 		}
 	}
+}
+
+/**
+ * Display some text on the screen
+ * @param t text
+ */
+var setText = function(t) {
+    span = document.getElementById("textelement");
+    txt = document.createTextNode(t);
+    span.innerText = txt.textContent;
+}
+
+/**
+ * Play a sound
+ * @param s sound path
+ */
+var playSound = function(s) {
+    var audio = new Audio(s);
+    audio.play();
 }
 
 /**
@@ -164,8 +188,11 @@ var lasers = new Array();
 //array that store the enemies
 var enemies = new Array();
 
+const enemies_row = 6;
+const enemies_height = 6;
+
 //add enemies
-createEnemies(6, 6);
+createEnemies(enemies_row, enemies_height);
 
 //handle events when the a key is pressed
 document.onkeydown = function(e) {
@@ -176,6 +203,8 @@ document.onkeydown = function(e) {
 document.onkeyup = function(e) {
 	keyHandler.keyUp(e);
 }
+
+const TOTAL_SCORE = enemies_row * enemies_height * player.getSingleScore();
 
 //run the game
 runGame();

@@ -22,6 +22,7 @@ function Player() {
     this.height = 16;
 
     var score = 0;
+    const SINGLE_SCORE = 25;
 
     //indicates if the sprite is moving left
     this.movingLeft = false;
@@ -71,10 +72,14 @@ function Player() {
     }
 
     this.incrementScore = function () {
-        score += 25;
+        score += SINGLE_SCORE;
     }
 
     this.getScore = function () {
         return score;
+    }
+
+    this.getSingleScore = function () {
+        return SINGLE_SCORE;
     }
 }
